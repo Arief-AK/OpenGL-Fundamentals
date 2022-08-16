@@ -308,12 +308,84 @@ void Exercise1()
     glfwTerminate();
 }
 
+// Exercise 2 implementation
+void Exercise2()
+{
+    // Predefine shaders
+    unsigned int vertexShader, fragmentShader, shaderProgram;
+
+    // Create two separate vertices for the two triangles
+    float first_triangle[] = {
+        // first triangle
+        -0.9f, -0.5f, 0.0f,  // left 
+        -0.0f, -0.5f, 0.0f,  // right
+        -0.45f, 0.5f, 0.0f
+    };
+
+    float second_triangle[] = {
+        0.0f, -0.5f, 0.0f,  // left
+         0.9f, -0.5f, 0.0f,  // right
+         0.45f, 0.5f, 0.0f
+    };
+
+    // Get the sizes
+    auto size_first_triangle = sizeof(first_triangle);
+    auto size_second_triangle = sizeof(second_triangle);
+
+    // Create the window
+    auto window = Initialise();
+
+    // Initialise shaders
+    InitialiseShaders(&vertexShader, &fragmentShader);
+    InitialiseShaderProgram(&vertexShader, &fragmentShader, &shaderProgram);
+
+    // Create explicit VBO and VAO for the triangles
+    unsigned int VBO[2];
+    unsigned int VAO[2];
+
+    BufferAndArrayConfiguration(&VBO[0], &VAO[0], first_triangle, size_first_triangle);
+    BufferAndArrayConfiguration(&VBO[1], &VAO[1], second_triangle, size_second_triangle);
+
+    // Attempt to display window by double-buffering
+    while (!glfwWindowShouldClose(window))
+    {
+        // Check for input
+        processInput(window);
+
+        // Rendering commands
+        glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Assign shader program
+        glUseProgram(shaderProgram);
+
+        // Draw the first triangle
+        glBindVertexArray(VAO[0]);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        
+        // Draw the second triangle
+        glBindVertexArray(VAO[1]);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        // Show on display
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // Perform cleanup
+    glDeleteVertexArrays(2, VAO);
+    glDeleteBuffers(2, VBO);
+    glDeleteProgram(shaderProgram);
+    glfwTerminate();
+}
+
 // ********************* MAIN PROGRAM *********************
 
 int main()
 {
     //Base();
-    Exercise1();
+    //Exercise1();
+    Exercise2();
 
     return 0;
 }
