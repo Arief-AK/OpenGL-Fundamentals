@@ -31,8 +31,25 @@ const char* fragmentShaderSecondSource = "#version 330 core\n"
 "}\0";
 
 // ********************* FUNCTION DECLARATIONS *********************
+
+// Callback function that is performed when a frame is created
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
+// Function to process keyboard inputs
 void processInput(GLFWwindow* window);
+
+// Function to initialise the main window
+GLFWwindow* Initialise();
+
+// Function to initialise shaders
+void InitialiseShaders(unsigned int* vertexShader, unsigned int* fragmentShader);
+
+// Function to initilaise shader program
+void InitialiseShaderProgram(unsigned int* vertexShader, unsigned int* fragmentShader, unsigned int* shaderProgram);
+
+// Function to configure vertex buffer and arrray objects with overload function for indices compatibility
+void BufferAndArrayConfiguration(unsigned int* VBO, unsigned int* VAO, float* vertices, unsigned long long size_vertices);
+void BufferAndArrayConfiguration(unsigned int* VBO, unsigned int* VAO, unsigned int* EBO, float* vertices, unsigned int* indices, unsigned long long size_vertices, unsigned long long size_indices);
 
 // ********************* FUNCTION IMPLEMENTATION *********************
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
