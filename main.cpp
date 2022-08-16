@@ -3,6 +3,9 @@
 #include <glad/glad.h>
 #include <iostream>
 
+// ********************* GLOBALS *********************
+bool wireframe = false;
+
 // ********************* OPENGL PREREQUISITES *********************
 const char* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
@@ -16,6 +19,13 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "void main()\n"
 "{\n"
 "   FragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
+"}\0";
+
+const char* fragmentShaderSecondSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(0.0f, 1.0f, 1.0f, 1.0f);\n"
 "}\0";
 
 // ********************* FUNCTION DECLARATIONS *********************
@@ -36,8 +46,19 @@ void processInput(GLFWwindow* window)
         glfwSetWindowShouldClose(window, true);
 
     // Check for wireframe key press
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    {
+        if (!wireframe)
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            wireframe = true;
+        }
+        else
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            wireframe = false;
+        }
+    }        
 }
 
 // ********************* HELPER FUNCTIONS *********************
@@ -379,13 +400,213 @@ void Exercise2()
     glfwTerminate();
 }
 
+// Exercise 3 implementation
+void Exercise3()
+{
+    // Predefine shaders
+    unsigned int vertexShader;
+    unsigned int fragmentShaders[2];
+    unsigned int shaderPrograms[2];
+
+    // Create two separate vertices for the two triangles
+    float first_triangle[] = {
+        // first triangle
+        -0.9f, -0.5f, 0.0f,  // left 
+        -0.0f, -0.5f, 0.0f,  // right
+        -0.45f, 0.5f, 0.0f
+    };
+
+    float second_triangle[] = {
+        0.0f, -0.5f, 0.0f,  // left
+         0.9f, -0.5f, 0.0f,  // right
+         0.45f, 0.5f, 0.0f
+    };
+
+    // Get the sizes
+    auto size_first_triangle = sizeof(first_triangle);
+    auto size_second_triangle = sizeof(second_triangle);
+
+    // Create the window
+    auto window = Initialise();
+
+    // ********************* VERTEX SHADER *********************
+
+    // Create and compile vertex shader
+    vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    glCompileShader(vertexShader);
+
+    // Check for compilation error
+    int successful_vertex_compilation;
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &successful_vertex_compilation);
+
+    if (!successful_vertex_compilation)
+    {
+        char infoLog[512];
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+
+    // ********************* FRAGMENT SHADERS *********************
+
+    // Create and compile first fragment shader
+    fragmentShaders[0] = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShaders[0], 1, &fragmentShaderSource, NULL);
+    glCompileShader(fragmentShaders[0]);
+
+    // Check for compilation error
+    int successful_fragment_compilation;
+    glGetShaderiv(fragmentShaders[0], GL_COMPILE_STATUS, &successful_fragment_compilation);
+
+    if (!successful_fragment_compilation)
+    {
+        char infoLog[512];
+        glGetShaderInfoLog(fragmentShaders[0], 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+    
+    // Create and compile second fragment shader
+    fragmentShaders[1] = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShaders[1], 1, &fragmentShaderSecondSource, NULL);
+    glCompileShader(fragmentShaders[1]);
+
+    // Check for compilation error
+    int successful_second_fragment_compilation;
+    glGetShaderiv(fragmentShaders[0], GL_COMPILE_STATUS, &successful_second_fragment_compilation);
+
+    if (!successful_second_fragment_compilation)
+    {
+        char infoLog[512];
+        glGetShaderInfoLog(fragmentShaders[1], 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+
+    // ********************* SHADER PROGRAMS *********************
+    
+    // Create and compile first shader program
+    shaderPrograms[0] = glCreateProgram();
+    glAttachShader(shaderPrograms[0], vertexShader);
+    glAttachShader(shaderPrograms[0], fragmentShaders[0]);
+    glLinkProgram(shaderPrograms[0]);
+
+    // Check for successfull compilation
+    int first_shader_compilation;
+    glGetProgramiv(shaderPrograms[0], GL_LINK_STATUS, &first_shader_compilation);
+
+    if (!first_shader_compilation)
+    {
+        char infoLog[512];
+        glGetProgramInfoLog(shaderPrograms[0], 512, NULL, infoLog);
+    }
+
+    // Create and compile second shader program
+    shaderPrograms[1] = glCreateProgram();
+    glAttachShader(shaderPrograms[1], vertexShader);
+    glAttachShader(shaderPrograms[1], fragmentShaders[1]);
+    glLinkProgram(shaderPrograms[1]);
+
+    // Check for successfull compilation
+    int second_shader_compilation;
+    glGetProgramiv(shaderPrograms[1], GL_LINK_STATUS, &second_shader_compilation);
+
+    if (!second_shader_compilation)
+    {
+        char infoLog[512];
+        glGetProgramInfoLog(shaderPrograms[1], 512, NULL, infoLog);
+    }
+
+    // ********************* VERTEX BUFFER AND ARRAY CONFIGURATIONS *********************
+
+    // Perform cleanup of shaders
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShaders[0]);
+    glDeleteShader(fragmentShaders[1]);
+
+    // Create explicit VBO and VAO for the triangles
+    unsigned int VBO[2];
+    unsigned int VAO[2];
+
+    BufferAndArrayConfiguration(&VBO[0], &VAO[0], first_triangle, size_first_triangle);
+    BufferAndArrayConfiguration(&VBO[1], &VAO[1], second_triangle, size_second_triangle);
+
+    // Attempt to display window by double-buffering
+    while (!glfwWindowShouldClose(window))
+    {
+        // Check for input
+        processInput(window);
+
+        // Rendering commands
+        glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Assign shader to the first shader program for first triangle
+        glUseProgram(shaderPrograms[0]);
+
+        // Draw the first triangle
+        glBindVertexArray(VAO[0]);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        // Assign shader to the second shader program for second triangle
+        glUseProgram(shaderPrograms[1]);
+
+        // Draw the second triangle
+        glBindVertexArray(VAO[1]);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        // Show on display
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // Perform cleanup
+    glDeleteVertexArrays(2, VAO);
+    glDeleteBuffers(2, VBO);
+    glDeleteProgram(shaderPrograms[0]);
+    glDeleteProgram(shaderPrograms[1]);
+    glfwTerminate();
+}
+
 // ********************* MAIN PROGRAM *********************
 
 int main()
 {
-    //Base();
-    //Exercise1();
-    Exercise2();
+    bool quit = false;
+    int response = -1;
 
+    while (!quit)
+    {
+        std::cout << "\nEnter option:\n";
+        std::cout << "0) Base\n";
+        std::cout << "1) Exercise 1\n";
+        std::cout << "2) Exercise 2\n";
+        std::cout << "3) Exercise 3\n";
+        std::cout << "4) Quit\n";
+        std::cout << "\nOption:";
+        std::cin >> response;
+
+        switch (response)
+        {
+        case 0: 
+            Base();
+            break;
+        case 1:
+            Exercise1();
+            break;
+        case 2:
+            Exercise2();
+            break;
+        case 3:
+            Exercise3();
+            break;
+        case 4:
+            quit = true;
+            break;
+        default:
+            Base();
+            break;
+        }
+    }
+
+    std::cout << "\nGood-bye!";
     return 0;
 }
