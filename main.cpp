@@ -5,7 +5,7 @@
 
 #include "Functions.h"
 
-// ********************* EXERCISES IMPLEMENTATION *********************
+// ********************* CHAPTERS IMPLEMENTATION *********************
 
 // Base implementation
 void Base()
@@ -365,6 +365,125 @@ void Exercise3()
     glfwTerminate();
 }
 
+// Base uniform shader implementation
+void BaseUniformShader()
+{
+    unsigned int vertexShader, fragmentShader, shaderProgram;
+
+    // Vertices for triangle
+    float vertices[] = {
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+         0.0f,  0.5f, 0.0f   // top 
+    };
+
+    // Get the size of vertices
+    auto size_vertices = sizeof(vertices);
+
+    // Create and initialise the window
+    auto window = Initialise();
+
+    // Initialise shaders
+    InitialiseShaders(&vertexShader, &fragmentShader, vertexShaderSource, UniformFragmentShaderSource);
+    InitialiseShaderProgram(&vertexShader, &fragmentShader, &shaderProgram);
+
+    // Create OpenGL buffer and array
+    unsigned int VBO, VAO;
+    BufferAndArrayConfiguration(&VBO, &VAO, vertices, size_vertices);
+
+    // Attempt to display window by double-buffering
+    while (!glfwWindowShouldClose(window))
+    {
+        // Check for input
+        processInput(window);
+
+        // Rendering commands
+        glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Assign shader program
+        glUseProgram(shaderProgram);
+
+        // Update shader program
+
+        // Get running time
+        double timeValue = glfwGetTime();
+
+        // Attempt to vary the red part colour
+        float red_value = (sin(timeValue) / 2.0f) + 0.5f;
+
+        // Get location of the uniform variable
+        int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+
+        glUniform4f(vertexColorLocation, red_value, 0.0f, 0.0f, 1.0f);
+
+        // Attempt to bind the vertex array
+        glBindVertexArray(VAO);
+
+        // Draw the triangle
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        // Show on display
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // Perform cleanup
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgram);
+    glfwTerminate();
+}
+
+// Separate colour for each vertex
+void ColouredVertex()
+{
+    unsigned int vertexShader, fragmentShader, shaderProgram;
+
+    // Vertices for triangle
+    float vertices[] = {
+         0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,  // bottom right with red colour
+        -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,  // bottom left with blue colour
+         0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f   // top with green colour
+    };
+
+    // Get the size of vertices
+    auto size_vertices = sizeof(vertices);
+
+    // Create and initialise the window
+    auto window = Initialise();
+
+    // Initialise shaders
+    InitialiseShaders(&vertexShader, &fragmentShader, vertexShaderSource, UniformFragmentShaderSource);
+    InitialiseShaderProgram(&vertexShader, &fragmentShader, &shaderProgram);
+
+    // Create OpenGL buffer and array
+    unsigned int VBO, VAO;
+    
+    // ********************* VERTICES AND BUFFER ARRAY CONFIGURATIONS *********************
+
+    // Generate buffers and vertex arrays
+    glGenBuffers(1, &VBO);
+    glGenVertexArrays(1, &VAO);
+
+    // Attempt to bind vertex array and buffer
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    // Attempt to copy the vertex data
+    glBufferData(GL_ARRAY_BUFFER, size_vertices, vertices, GL_STATIC_DRAW);
+
+    // Configure the vertex attributes and enable the vertex array
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); // For position, modified to accomodate color data
+    glEnableVertexAttribArray(0);
+
+    // Confifgure to accomodate the position data
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+
+}
+
 // ********************* MAIN PROGRAM *********************
 
 int main()
@@ -374,12 +493,17 @@ int main()
 
     while (!quit)
     {
-        std::cout << "\nEnter option:\n";
-        std::cout << "0) Base\n";
+        std::cout << "\n********************* MENU *********************\n";
+        std::cout << "\nHello triangle chapter:\n";
+        std::cout << "0) Hello triangle!\n";
         std::cout << "1) Exercise 1\n";
         std::cout << "2) Exercise 2\n";
         std::cout << "3) Exercise 3\n";
-        std::cout << "4) Quit\n";
+
+        std::cout << "\nShader chapter:\n";
+        std::cout << "\n4) Shader with uniform variables\n";
+
+        std::cout << "\n5) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -398,6 +522,9 @@ int main()
             Exercise3();
             break;
         case 4:
+            BaseUniformShader();
+            break;
+        case 5:
             quit = true;
             break;
         default:

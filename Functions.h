@@ -8,7 +8,9 @@
 // ********************* GLOBALS *********************
 bool wireframe = false;
 
-// ********************* OPENGL PREREQUISITES *********************
+// ********************* CHAPTER PREREQUISITES *********************
+
+// ********************* HELLO TRIANGLE *********************
 const char* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
 "void main()\n"
@@ -28,6 +30,41 @@ const char* fragmentShaderSecondSource = "#version 330 core\n"
 "void main()\n"
 "{\n"
 "   FragColor = vec4(0.0f, 1.0f, 1.0f, 1.0f);\n"
+"}\0";
+
+// ********************* SHADERS *********************
+
+const char* vertexShaderSecondSource = "#version 330 core\n"
+"layout (location = 0) in vec3 aPos;\n"
+"void main()\n"
+"{\n"
+"   gl_Position = vec4(aPos, 1.0);\n"
+"}\0";
+
+const char* vertexShaderColoredVertexSource = "#version 330 core\n"
+"layout (location = 0) in vec3 aPos;\n"     // Position variable
+"layout (location = 1) in vec3 aColor;\n"   // Color variable
+"out vec3 ourColor;\n"
+"void main()\n"
+"{\n"
+"   gl_Position = vec4(aPos, 1.0);\n"
+"   ourColor = aColor;\n"                   // Set ourColor to input color from the vertex data
+"}\0";
+
+const char* UniformFragmentShaderSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"uniform vec4 ourColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = ourColor;\n"
+"}\0";
+
+const char* fragmentShaderColoredVertexSource = "#version 330 core\n"
+"out vec4 FragColor;\n"
+"in vec3 ourColor;\n"
+"void main()\n"
+"{\n"
+"   FragColor = vec4(ourColor, 1.0);\n"
 "}\0";
 
 // ********************* FUNCTION DECLARATIONS *********************
@@ -109,6 +146,45 @@ GLFWwindow* Initialise()
 }
 
 void InitialiseShaders(unsigned int* vertexShader, unsigned int* fragmentShader)
+{
+    // ********************* VERTEX SHADER *********************
+
+    // Create and compile vertex shader
+    *vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(*vertexShader, 1, &vertexShaderSource, NULL);
+    glCompileShader(*vertexShader);
+
+    // Check for compilation error
+    int successful_vertex_compilation;
+    glGetShaderiv(*vertexShader, GL_COMPILE_STATUS, &successful_vertex_compilation);
+
+    if (!successful_vertex_compilation)
+    {
+        char infoLog[512];
+        glGetShaderInfoLog(*vertexShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+
+    // ********************* FRAGMENT SHADER *********************
+
+    // Create and compile fragment shader
+    *fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(*fragmentShader, 1, &fragmentShaderSource, NULL);
+    glCompileShader(*fragmentShader);
+
+    // Check for compilation error
+    int successful_fragment_compilation;
+    glGetShaderiv(*fragmentShader, GL_COMPILE_STATUS, &successful_fragment_compilation);
+
+    if (!successful_fragment_compilation)
+    {
+        char infoLog[512];
+        glGetShaderInfoLog(*fragmentShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+}
+
+void InitialiseShaders(unsigned int* vertexShader, unsigned int* fragmentShader, const char* vertexShaderSource, const char* fragmentShaderSource)
 {
     // ********************* VERTEX SHADER *********************
 
