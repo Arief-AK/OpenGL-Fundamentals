@@ -1,8 +1,7 @@
 // ********************* INCLUDES *********************
 #include <GLFW/glfw3.h>
-#include <glad/glad.h>
-#include <iostream>
 
+#include "Shader.h"
 #include "Functions.h"
 
 // ********************* CHAPTERS IMPLEMENTATION *********************
@@ -454,7 +453,7 @@ void ColouredVertex()
     auto window = Initialise();
 
     // Initialise shaders
-    InitialiseShaders(&vertexShader, &fragmentShader, vertexShaderSource, UniformFragmentShaderSource);
+    InitialiseShaders(&vertexShader, &fragmentShader, vertexShaderColoredVertexSource, fragmentShaderColoredVertexSource);
     InitialiseShaderProgram(&vertexShader, &fragmentShader, &shaderProgram);
 
     // Create OpenGL buffer and array
@@ -481,7 +480,95 @@ void ColouredVertex()
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
+    // Use shader program
+    glUseProgram(shaderProgram);
 
+    while (!glfwWindowShouldClose(window))
+    {
+        processInput(window);
+
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // Perform cleanup
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgram);
+    glfwTerminate();
+}
+
+// Shader class implementation
+void ShaderClassImplementation()
+{
+    // Vertices for triangle
+    float vertices[] = {
+         0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,  // bottom right with red colour
+        -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,  // bottom left with blue colour
+         0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f   // top with green colour
+    };
+
+    // Get the size of vertices
+    auto size_vertices = sizeof(vertices);
+
+    // Create and initialise the window
+    auto window = Initialise();
+
+    // Build and compile shader program
+    Shader shader("vertex_shader.vs", "fragment_shader.fs");
+
+    // Create OpenGL buffer and array
+    unsigned int VBO, VAO;
+
+    // ********************* VERTICES AND BUFFER ARRAY CONFIGURATIONS *********************
+
+    // Generate buffers and vertex arrays
+    glGenBuffers(1, &VBO);
+    glGenVertexArrays(1, &VAO);
+
+    // Attempt to bind vertex array and buffer
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    // Attempt to copy the vertex data
+    glBufferData(GL_ARRAY_BUFFER, size_vertices, vertices, GL_STATIC_DRAW);
+
+    // Configure the vertex attributes and enable the vertex array
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); // For position, modified to accomodate color data
+    glEnableVertexAttribArray(0);
+
+    // Confifgure to accomodate the position data
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    while (!glfwWindowShouldClose(window))
+    {
+        processInput(window);
+
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Use shader program
+        shader.activate();
+
+        // Rendering
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // Perform cleanup
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glfwTerminate();
 }
 
 // ********************* MAIN PROGRAM *********************
@@ -502,8 +589,10 @@ int main()
 
         std::cout << "\nShader chapter:\n";
         std::cout << "\n4) Shader with uniform variables\n";
+        std::cout << "5) Coloured vertices\n";
+        std::cout << "6) Shader class implementation\n";
 
-        std::cout << "\n5) Quit\n";
+        std::cout << "\n7) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -525,6 +614,12 @@ int main()
             BaseUniformShader();
             break;
         case 5:
+            ColouredVertex();
+            break;
+        case 6:
+            ShaderClassImplementation();
+            break;
+        case 7:
             quit = true;
             break;
         default:

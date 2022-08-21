@@ -7,5 +7,5 @@ C:\glfw-3.3.8 resources\Include\glad\glad.h(498,1): warning C4005: 'GL_TEXTURE_C
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(1153): message : see previous definition of 'GL_TEXTURE_COMPONENTS'
 C:\glfw-3.3.8 resources\Include\glad\glad.h(592,1): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\GL\gl.h(973): message : see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
-C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\main.cpp(413,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\main.cpp(412,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   OpenGL_GettingStarted.vcxproj -> C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\x64\Debug\OpenGL_GettingStarted.exe
