@@ -48,5 +48,8 @@
     <None Include="fragment_shader.fs">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="vertex_shader_ex1.vs">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
