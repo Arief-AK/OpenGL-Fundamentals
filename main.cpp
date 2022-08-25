@@ -1,5 +1,5 @@
 // ********************* INCLUDES *********************
-#include "Exercises.h"
+#include "Chapters/Exercises.h"
 
 // ********************* MAIN PROGRAM *********************
 

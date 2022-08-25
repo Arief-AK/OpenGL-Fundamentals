@@ -144,25 +144,27 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Shaders\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exercises.h" />
+    <ClInclude Include="Chapters\Exercises.h" />
+    <ClInclude Include="Chapters\GettingStarted\HelloTriangle\HelloTriangle.h" />
+    <ClInclude Include="Chapters\GettingStarted\Shaders\Shaders.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Shaders\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenGL_GettingStarted.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Fragment\fragment_shader.fs" />
-    <None Include="Shaders\Fragment\fragment_shader_ex3.fs" />
+    <None Include="Shaders\Fragment\Getting started\fragment_shader.fs" />
+    <None Include="Shaders\Fragment\Getting started\fragment_shader_ex3.fs" />
     <None Include="README.md" />
-    <None Include="Shaders\Vertex\vertex_shader.vs" />
-    <None Include="Shaders\Vertex\vertex_shader_ex1.vs" />
-    <None Include="Shaders\Vertex\vertex_shader_ex2.vs" />
-    <None Include="Shaders\Vertex\vertex_shader_ex3.vs" />
+    <None Include="Shaders\Vertex\Getting started\vertex_shader.vs" />
+    <None Include="Shaders\Vertex\Getting started\vertex_shader_ex1.vs" />
+    <None Include="Shaders\Vertex\Getting started\vertex_shader_ex2.vs" />
+    <None Include="Shaders\Vertex\Getting started\vertex_shader_ex3.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

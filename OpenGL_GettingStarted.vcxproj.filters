@@ -21,7 +21,7 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="Shaders\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,14 +29,20 @@
     <ClInclude Include="Functions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="Shaders\Shader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Exercises.h">
+    <ClInclude Include="Chapters\Exercises.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapters\GettingStarted\HelloTriangle\HelloTriangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapters\GettingStarted\Shaders\Shaders.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -45,20 +51,20 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Vertex\vertex_shader.vs">
+    <None Include="Shaders\Vertex\Getting started\vertex_shader.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="Shaders\Fragment\fragment_shader.fs">
+    <None Include="Shaders\Fragment\Getting started\fragment_shader.fs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="Shaders\Vertex\vertex_shader_ex1.vs">
+    <None Include="Shaders\Vertex\Getting started\vertex_shader_ex1.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="Shaders\Vertex\vertex_shader_ex2.vs">
+    <None Include="Shaders\Vertex\Getting started\vertex_shader_ex2.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="Shaders\Vertex\vertex_shader_ex3.vs" />
-    <None Include="Shaders\Fragment\fragment_shader_ex3.fs">
+    <None Include="Shaders\Vertex\Getting started\vertex_shader_ex3.vs" />
+    <None Include="Shaders\Fragment\Getting started\fragment_shader_ex3.fs">
       <Filter>Source Files</Filter>
     </None>
     <None Include="README.md" />
