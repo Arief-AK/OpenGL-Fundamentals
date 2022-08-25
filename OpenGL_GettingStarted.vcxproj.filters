@@ -76,9 +76,13 @@
     <None Include="README.md" />
     <None Include="Shaders\Vertex\Getting started\textures_vertex_shader.vs" />
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader.fs" />
+    <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_multiple.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Textures\awesomeface.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

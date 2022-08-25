@@ -164,6 +164,7 @@
     <None Include="Shaders\Fragment\Getting started\fragment_shader_ex3.fs" />
     <None Include="README.md" />
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader.fs" />
+    <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_multiple.fs" />
     <None Include="Shaders\Vertex\Getting started\textures_vertex_shader.vs" />
     <None Include="Shaders\Vertex\Getting started\vertex_shader.vs" />
     <None Include="Shaders\Vertex\Getting started\vertex_shader_ex1.vs" />
@@ -171,6 +172,7 @@
     <None Include="Shaders\Vertex\Getting started\vertex_shader_ex3.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Textures\awesomeface.png" />
     <Image Include="Textures\container.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

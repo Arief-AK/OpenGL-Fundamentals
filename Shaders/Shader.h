@@ -12,6 +12,9 @@ class Shader
 {
 public:
 	
+	// Member variables
+	unsigned int m_id;
+
 	// Default constructor
 	Shader();
 
@@ -32,7 +35,6 @@ public:
 private:
 
 	// Member variables
-	unsigned int m_id;
 	unsigned int m_vertex_shader;
 	unsigned int m_fragment_shader;
 	unsigned int m_vbo, m_vao;

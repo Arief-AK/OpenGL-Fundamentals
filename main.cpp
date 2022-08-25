@@ -28,8 +28,9 @@ int main()
 
         std::cout << "\nTextures chapter:\n";
         std::cout << "\n10) Texture base implementation\n";
+        std::cout << "11) Multiple textures\n";
 
-        std::cout << "\n11) Quit\n";
+        std::cout << "\n12) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -73,6 +74,9 @@ int main()
             TexturesBase();
             break;
         case 11:
+            TextureUnits();
+            break;
+        case 12:
             quit = true;
             break;
         default:
