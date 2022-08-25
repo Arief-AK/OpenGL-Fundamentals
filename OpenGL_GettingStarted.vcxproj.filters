@@ -44,6 +44,12 @@
     <ClInclude Include="Chapters\GettingStarted\Shaders\Shaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Chapters\GettingStarted\Textures\Textures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenGL_GettingStarted.rc">
@@ -68,5 +74,12 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="README.md" />
+    <None Include="Shaders\Vertex\Getting started\textures_vertex_shader.vs" />
+    <None Include="Shaders\Fragment\Getting started\textures_fragment_shader.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

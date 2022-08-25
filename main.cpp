@@ -26,7 +26,10 @@ int main()
         std::cout << "8) Shader with horizontal offset\n";
         std::cout << "9) Fragment colour equal to vertex position\n";
 
-        std::cout << "\n10) Quit\n";
+        std::cout << "\nTextures chapter:\n";
+        std::cout << "\n10) Texture base implementation\n";
+
+        std::cout << "\n11) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -67,6 +70,9 @@ int main()
             ShaderExercise3();
             break;
         case 10:
+            TexturesBase();
+            break;
+        case 11:
             quit = true;
             break;
         default:

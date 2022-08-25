@@ -1,10 +1,8 @@
 #pragma once
 
 // ********************* INCLUDES *********************
-#include <GLFW/glfw3.h>
-
 #include "../Shaders/Shader.h"
-#include "Functions.h"
+#include "../Functions.h"
 
 // ********************* BASE IMPLEMENTATION *********************
 
@@ -74,3 +72,4 @@ void Base()
 
 #include "GettingStarted/HelloTriangle/HelloTriangle.h"
 #include "GettingStarted/Shaders/Shaders.h"
+#include "GettingStarted/Textures/Textures.h"
