@@ -147,6 +147,7 @@
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Exercises.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
@@ -155,10 +156,13 @@
     <ResourceCompile Include="OpenGL_GettingStarted.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment_shader.fs" />
-    <None Include="vertex_shader.vs" />
-    <None Include="vertex_shader_ex1.vs" />
-    <None Include="vertex_shader_ex2.vs" />
+    <None Include="Shaders\Fragment\fragment_shader.fs" />
+    <None Include="Shaders\Fragment\fragment_shader_ex3.fs" />
+    <None Include="README.md" />
+    <None Include="Shaders\Vertex\vertex_shader.vs" />
+    <None Include="Shaders\Vertex\vertex_shader_ex1.vs" />
+    <None Include="Shaders\Vertex\vertex_shader_ex2.vs" />
+    <None Include="Shaders\Vertex\vertex_shader_ex3.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -35,6 +35,9 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Exercises.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenGL_GettingStarted.rc">
@@ -42,17 +45,22 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertex_shader.vs">
+    <None Include="Shaders\Vertex\vertex_shader.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="fragment_shader.fs">
+    <None Include="Shaders\Fragment\fragment_shader.fs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="vertex_shader_ex1.vs">
+    <None Include="Shaders\Vertex\vertex_shader_ex1.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="vertex_shader_ex2.vs">
+    <None Include="Shaders\Vertex\vertex_shader_ex2.vs">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Shaders\Vertex\vertex_shader_ex3.vs" />
+    <None Include="Shaders\Fragment\fragment_shader_ex3.fs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>
