@@ -51,5 +51,8 @@
     <None Include="vertex_shader_ex1.vs">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="vertex_shader_ex2.vs">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
