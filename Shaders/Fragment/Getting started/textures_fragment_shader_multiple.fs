@@ -14,5 +14,5 @@ uniform sampler2D texture_1;
 void main()
 {
     // Attempt to colour the fragment with the texture
-    FragColor = mix(texture(texture_0, texCoord), texture(texture_1, texCoord), 0.2);
+    FragColor = mix(texture(texture_0, texCoord), texture(texture_1, texCoord), 0.5);
 }

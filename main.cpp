@@ -7,7 +7,6 @@ int main()
 {
     bool quit = false;
     int response = -1;
-    float offset = -1.0f;
 
     while (!quit)
     {
@@ -22,15 +21,18 @@ int main()
         std::cout << "\n4) Shader with uniform variables\n";
         std::cout << "5) Coloured vertices\n";
         std::cout << "6) Shader class implementation\n";
-        std::cout << "7) Upside down triangle shader\n";
-        std::cout << "8) Shader with horizontal offset\n";
-        std::cout << "9) Fragment colour equal to vertex position\n";
+        std::cout << "7) Ex 1: Upside down triangle shader\n";
+        std::cout << "8) Ex 2: Shader with horizontal offset\n";
+        std::cout << "9) Ex 3: Fragment colour equal to vertex position\n";
 
         std::cout << "\nTextures chapter:\n";
         std::cout << "\n10) Texture base implementation\n";
         std::cout << "11) Multiple textures\n";
+        std::cout << "12) Ex 1: Multiple textures with happy face reversed\n";
+        std::cout << "13) Ex 2: Multiple textures with multiple happy faces\n";
+        std::cout << "14) Ex 3: Multiple textures with variable display\n";
 
-        std::cout << "\n12) Quit\n";
+        std::cout << "\n15) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -61,6 +63,7 @@ int main()
             ShaderExercise1();
             break;
         case 8:
+            float offset;
             std::cout << "\nEnter a horizontal offset:";
             std::cin >> offset;
 
@@ -77,6 +80,20 @@ int main()
             TextureUnits();
             break;
         case 12:
+            TextureExercise1();
+            break;
+        case 13:
+            TextureExercise2();
+            break;
+        case 14:
+            float disp_val;
+            std::cout << "\nEnter texture display value:";
+            std::cin >> disp_val;
+
+            // Perform with set texture display value
+            TextureExercise4(disp_val);
+            break;
+        case 15:
             quit = true;
             break;
         default:

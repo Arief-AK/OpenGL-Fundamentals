@@ -165,6 +165,9 @@
     <None Include="README.md" />
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader.fs" />
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_multiple.fs" />
+    <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_multiple_reversed.fs" />
+    <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_multiple_styles.fs" />
+    <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_with_uniform.fs" />
     <None Include="Shaders\Vertex\Getting started\textures_vertex_shader.vs" />
     <None Include="Shaders\Vertex\Getting started\vertex_shader.vs" />
     <None Include="Shaders\Vertex\Getting started\vertex_shader_ex1.vs" />
