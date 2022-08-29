@@ -162,11 +162,8 @@ void TransformationBase()
 		// Scale matrix by 0.5
 		matrix_trans = glm::scale(matrix_trans, glm::vec3(0.5, 0.5, 0.5));
 
-		// Get the location of the uniform
-		unsigned int transformLoc = glGetUniformLocation(shader.m_id, "transform");
-
 		// Inform shader of matrix uniform
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(matrix_trans));
+		shader.setMat4("transform", matrix_trans);
 
 		// Attempt to bind the vertex array
 		glBindVertexArray(VAO);
