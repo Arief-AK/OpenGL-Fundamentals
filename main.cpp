@@ -34,8 +34,9 @@ int main()
 
         std::cout << "\nTransformations chapter:\n";
         std::cout << "\n15) Transformations base implementation\n";
+        std::cout << "16) Ex 1: Reversed transformation procedure\n";
 
-        std::cout << "\n16) Quit\n";
+        std::cout << "\n17) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -100,6 +101,9 @@ int main()
             TransformationBase();
             break;
         case 16:
+            TransformationsExercise1();
+            break;
+        case 17:
             quit = true;
             break;
         default:
