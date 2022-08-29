@@ -4,6 +4,13 @@
 #include "../Shaders/Shader.h"
 #include "../Functions.h"
 
+// ********************* CHAPTERS IMPLEMENTATION *********************
+
+#include "GettingStarted/HelloTriangle/HelloTriangle.h"
+#include "GettingStarted/Shaders/Shaders.h"
+#include "GettingStarted/Textures/Textures.h"
+#include "GettingStarted/Transformations/Transformations.h"
+
 // ********************* BASE IMPLEMENTATION *********************
 
 // Base implementation
@@ -67,9 +74,3 @@ void Base()
     glDeleteProgram(shaderProgram);
     glfwTerminate();
 }
-
-// ********************* CHAPTERS IMPLEMENTATION *********************
-
-#include "GettingStarted/HelloTriangle/HelloTriangle.h"
-#include "GettingStarted/Shaders/Shaders.h"
-#include "GettingStarted/Textures/Textures.h"

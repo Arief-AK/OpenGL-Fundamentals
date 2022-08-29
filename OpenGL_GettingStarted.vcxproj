@@ -151,6 +151,7 @@
     <ClInclude Include="Chapters\GettingStarted\HelloTriangle\HelloTriangle.h" />
     <ClInclude Include="Chapters\GettingStarted\Shaders\Shaders.h" />
     <ClInclude Include="Chapters\GettingStarted\Textures\Textures.h" />
+    <ClInclude Include="Chapters\GettingStarted\Transformations\Transformations.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shaders\Shader.h" />
@@ -168,7 +169,9 @@
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_multiple_reversed.fs" />
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_multiple_styles.fs" />
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_with_uniform.fs" />
+    <None Include="Shaders\Fragment\Getting started\transformations_fragment_shader.fs" />
     <None Include="Shaders\Vertex\Getting started\textures_vertex_shader.vs" />
+    <None Include="Shaders\Vertex\Getting started\transformations_vertex_shader.vs" />
     <None Include="Shaders\Vertex\Getting started\vertex_shader.vs" />
     <None Include="Shaders\Vertex\Getting started\vertex_shader_ex1.vs" />
     <None Include="Shaders\Vertex\Getting started\vertex_shader_ex2.vs" />

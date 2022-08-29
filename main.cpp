@@ -32,7 +32,10 @@ int main()
         std::cout << "13) Ex 2: Multiple textures with multiple happy faces\n";
         std::cout << "14) Ex 3: Multiple textures with variable display\n";
 
-        std::cout << "\n15) Quit\n";
+        std::cout << "\nTransformations chapter:\n";
+        std::cout << "\n15) Transformations base implementation\n";
+
+        std::cout << "\n16) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -94,6 +97,9 @@ int main()
             TextureExercise4(disp_val);
             break;
         case 15:
+            TransformationBase();
+            break;
+        case 16:
             quit = true;
             break;
         default:

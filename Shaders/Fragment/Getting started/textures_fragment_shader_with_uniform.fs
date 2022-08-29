@@ -10,7 +10,7 @@ out vec4 FragColor;
 // Initialise a 2D sampler for our texture
 uniform sampler2D texture_0;
 uniform sampler2D texture_1;
-uniform float display_value;
+unfiform float display_value;
 
 void main()
 {
