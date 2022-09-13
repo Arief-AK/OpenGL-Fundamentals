@@ -53,6 +53,9 @@
     <ClInclude Include="Chapters\GettingStarted\Transformations\Transformations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Chapters\GettingStarted\CoordinateSystems\CoordinateSystems.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenGL_GettingStarted.rc">
@@ -85,6 +88,8 @@
     <None Include="Shaders\Fragment\Getting started\textures_fragment_shader_with_uniform.fs" />
     <None Include="Shaders\Vertex\Getting started\transformations_vertex_shader.vs" />
     <None Include="Shaders\Fragment\Getting started\transformations_fragment_shader.fs" />
+    <None Include="Shaders\Vertex\Getting started\coordinate_systems_vertex_shader.vs" />
+    <None Include="Shaders\Fragment\Getting started\coordinate_systems_fragment_shader.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\container.jpg">

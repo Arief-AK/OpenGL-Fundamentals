@@ -37,7 +37,12 @@ int main()
         std::cout << "16) Ex 1: Reversed transformation procedure\n";
         std::cout << "17) Ex 2: Multiple transformations\n";
 
-        std::cout << "\n18) Quit\n";
+        std::cout << "\nCoordinate Systems chapter:\n";
+        std::cout << "\n18) Coordinate Systems base implementation\n";
+        std::cout << "19) Coordinate Systems cube implementation\n";
+        std::cout << "20) Coordinate Systems multiple rotating cube implementation\n";
+
+        std::cout << "\n21) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -108,6 +113,15 @@ int main()
             TransformationsExercise2();
             break;
         case 18:
+            CoordinateSystemsBase();
+            break;
+        case 19:
+            CoordinateSystemsBaseCube();
+            break;
+        case 20:
+            CoordinateSystemsMultipleCubes();
+            break;
+        case 21:
             quit = true;
             break;
         default:
