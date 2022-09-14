@@ -56,6 +56,9 @@
     <ClInclude Include="Chapters\GettingStarted\CoordinateSystems\CoordinateSystems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Chapters\GettingStarted\Camera\CameraChapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenGL_GettingStarted.rc">

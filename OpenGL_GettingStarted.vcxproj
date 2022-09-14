@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapters\Exercises.h" />
+    <ClInclude Include="Chapters\GettingStarted\Camera\CameraChapter.h" />
     <ClInclude Include="Chapters\GettingStarted\CoordinateSystems\CoordinateSystems.h" />
     <ClInclude Include="Chapters\GettingStarted\HelloTriangle\HelloTriangle.h" />
     <ClInclude Include="Chapters\GettingStarted\Shaders\Shaders.h" />

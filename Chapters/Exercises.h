@@ -11,6 +11,7 @@
 #include "GettingStarted/Textures/Textures.h"
 #include "GettingStarted/Transformations/Transformations.h"
 #include "GettingStarted/CoordinateSystems/CoordinateSystems.h"
+#include "GettingStarted/Camera/CameraChapter.h"
 
 // ********************* BASE IMPLEMENTATION *********************
 

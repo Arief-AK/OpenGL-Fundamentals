@@ -42,7 +42,10 @@ int main()
         std::cout << "19) Coordinate Systems cube implementation\n";
         std::cout << "20) Coordinate Systems multiple rotating cube implementation\n";
 
-        std::cout << "\n21) Quit\n";
+        std::cout << "\nCamera chapter:\n";
+        std::cout << "\n21) Camera base implementation\n";
+
+        std::cout << "\n22) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -122,6 +125,9 @@ int main()
             CoordinateSystemsMultipleCubes();
             break;
         case 21:
+            CameraBaseImplementation();
+            break;
+        case 22:
             quit = true;
             break;
         default:
