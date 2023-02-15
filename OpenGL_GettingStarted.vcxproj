@@ -147,6 +147,7 @@
     <ClCompile Include="Shaders\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Chapters\Exercises.h" />
     <ClInclude Include="Chapters\GettingStarted\Camera\CameraChapter.h" />
     <ClInclude Include="Chapters\GettingStarted\CoordinateSystems\CoordinateSystems.h" />

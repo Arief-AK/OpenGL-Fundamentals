@@ -59,6 +59,9 @@
     <ClInclude Include="Chapters\GettingStarted\Camera\CameraChapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenGL_GettingStarted.rc">

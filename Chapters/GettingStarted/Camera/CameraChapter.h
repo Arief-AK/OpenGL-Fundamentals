@@ -3,35 +3,72 @@
 // ********************* INCLUDES *********************
 
 #include "../../Exercises.h"
+#include "../../../Camera/Camera.h"
 
 // ********************* CAMERA CONFIGURATION *********************
 
-// Initialise the camera position and configurations
-glm::vec3 camera_position = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
-const float camera_speed = 0.05f;
+// Initialise camera object
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+float mouse_lastX = 400, mouse_lastY = 300;
+bool first_mouse_encounter = true;
 
-// ********************* HELPER FUNCTIONS *********************
+// Initialise timing for speed movement
+float delta_time = 0.0f;
+float last_frame = 0.0f;
 
-void processMovementInput(GLFWwindow* window, float speed, glm::vec3* position, glm::vec3* front, glm::vec3* up)
+void scrolling_callback(GLFWwindow* window, double offset_x, double offset_y)
 {
+	camera.ProcessMouseScroll(static_cast<float>(offset_y));
+}
+
+void mouse_movement_callback(GLFWwindow* window, double xpos_input, double ypos_input)
+{
+	float xpos = static_cast<float>(xpos_input);
+	float ypos = static_cast<float>(ypos_input);
+
+	if (first_mouse_encounter)
+	{
+		mouse_lastX = xpos;
+		mouse_lastY = ypos;
+		first_mouse_encounter = false;
+	}
+
+	// Calculate new coordniates for mouse
+	float offset_x = xpos - mouse_lastX;
+	float offset_y = mouse_lastY - ypos;
+
+	mouse_lastX = xpos;
+	mouse_lastY = ypos;
+
+	camera.ProcessMouseMovement(offset_x, offset_y);
+
+}
+
+// ********************* INPUT FUNCTIONS *********************
+
+void processMovementInput(GLFWwindow* window)
+{
+	// Get the time produced for new frame
+	float current_frame = glfwGetTime();
+	delta_time = current_frame - last_frame;
+	last_frame = current_frame;
+
 	// Check for escape key press
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 
 	// Check for movement press
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		*position += speed * *front;
+		camera.ProcessKeyboard(FORWARD, delta_time);
 
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		*position -= speed * *front;
+		camera.ProcessKeyboard(BACKWARD, delta_time);
 
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		*position -= glm::normalize(glm::cross(*front, *up)) * speed;
+		camera.ProcessKeyboard(LEFT, delta_time);
 
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		*position += glm::normalize(glm::cross(*front, *up)) * speed;
+		camera.ProcessKeyboard(RIGHT, delta_time);
 }
 
 // ********************* CAMERA IMPLEMENTATION *********************
@@ -362,6 +399,13 @@ void CameraWalkAroundImplementation()
 	// Enable depth-buffer for OpenGL to remember which pixels are already coloured or not
 	glEnable(GL_DEPTH_TEST);
 
+	// Utilise the mouse input mode
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+	// Set callbacks for mouse movement and scrolling
+	glfwSetCursorPosCallback(window, mouse_movement_callback);
+	glfwSetScrollCallback(window, scrolling_callback);
+
 	// Build and compile shader program
 	Shader shader("Shaders/Vertex/Getting started/coordinate_systems_vertex_shader.vs", "Shaders/Fragment/Getting started/coordinate_systems_fragment_shader.fs");
 
@@ -461,7 +505,7 @@ void CameraWalkAroundImplementation()
 	while (!glfwWindowShouldClose(window))
 	{
 		// Check for input
-		processMovementInput(window, camera_speed, &camera_position, &camera_front, &camera_up);
+		processMovementInput(window);
 
 		// Clear depth buffer of vertices from the previous frame
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -483,7 +527,7 @@ void CameraWalkAroundImplementation()
 		// ********************* VIEW SPACE MATRIXES *********************
 
 		// Initialise matrix for view
-		glm::mat4 view = glm::lookAt(camera_position, camera_position + camera_front, camera_up);
+		glm::mat4 view = camera.GetViewMatrix();
 
 		// Assign uniform to shader
 		shader.setMat4("view", view);
@@ -491,7 +535,7 @@ void CameraWalkAroundImplementation()
 		// ********************* WORLD SPACE MATRIXES *********************
 
 		// Initialise the projection matrix to define projection frutsum
-		glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
 
 		// Assign uniform to shader
 		shader.setMat4("projection", projection);
