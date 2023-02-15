@@ -44,8 +44,9 @@ int main()
 
         std::cout << "\nCamera chapter:\n";
         std::cout << "\n21) Camera base implementation\n";
+        std::cout << "22) Camera walk around implementation\n";
 
-        std::cout << "\n22) Quit\n";
+        std::cout << "\n23) Quit\n";
         std::cout << "\nOption:";
         std::cin >> response;
 
@@ -128,6 +129,9 @@ int main()
             CameraBaseImplementation();
             break;
         case 22:
+            CameraWalkAroundImplementation();
+            break;
+        case 23:
             quit = true;
             break;
         default:
