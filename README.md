@@ -1,5 +1,5 @@
 # OpenGL-Fundamentals
-This repository is based on the OpenGL tutorial from Joey de Vries on [LearnOpenGL](learnopengl.com) webiste.
+This repository is based on the OpenGL tutorial from Joey de Vries on [LearnOpenGL](https://learnopengl.com/) webiste.
 The purpose of this repository is to document my progress and knowldedge of OpenGL.
 
 ## Getting Started
