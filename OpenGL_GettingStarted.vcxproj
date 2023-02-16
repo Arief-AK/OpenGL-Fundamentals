@@ -183,6 +183,7 @@
     <None Include="Shaders\Vertex\Getting started\vertex_shader_ex3.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Documentation\Menu.png" />
     <Image Include="Textures\awesomeface.png" />
     <Image Include="Textures\container.jpg" />
   </ItemGroup>

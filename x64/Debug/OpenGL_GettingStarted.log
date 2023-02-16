@@ -1,14 +1,1 @@
-﻿  main.cpp
-C:\glfw-3.3.8 resources\Include\glad\glad.h(326,1): warning C4005: 'GL_ALL_ATTRIB_BITS': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\gl.h(107,1): message : see previous definition of 'GL_ALL_ATTRIB_BITS'
-C:\glfw-3.3.8 resources\Include\glad\glad.h(414,1): warning C4005: 'GL_LOGIC_OP': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\gl.h(1152,1): message : see previous definition of 'GL_LOGIC_OP'
-C:\glfw-3.3.8 resources\Include\glad\glad.h(498,1): warning C4005: 'GL_TEXTURE_COMPONENTS': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\gl.h(1153,1): message : see previous definition of 'GL_TEXTURE_COMPONENTS'
-C:\glfw-3.3.8 resources\Include\glad\glad.h(592,1): warning C4005: 'GL_CLIENT_ALL_ATTRIB_BITS': macro redefinition
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\gl.h(973,1): message : see previous definition of 'GL_CLIENT_ALL_ATTRIB_BITS'
-C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\Chapters\GettingStarted\HelloTriangle\HelloTriangle.h(350,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\Chapters\GettingStarted\Camera\CameraChapter.h(52,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\Chapters\GettingStarted\Camera\CameraChapter.h(283,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\Chapters\GettingStarted\Camera\CameraChapter.h(284,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  OpenGL_GettingStarted.vcxproj -> C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\x64\Debug\OpenGL_GettingStarted.exe
+﻿  OpenGL_GettingStarted.vcxproj -> C:\Users\Arief\source\repos\XX - Hobbies\01 - OpenGL\OpenGL_GettingStarted\x64\Debug\OpenGL_GettingStarted.exe

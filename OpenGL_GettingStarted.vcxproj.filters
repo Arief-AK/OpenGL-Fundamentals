@@ -104,5 +104,8 @@
     <Image Include="Textures\awesomeface.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Documentation\Menu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
